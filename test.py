@@ -7,7 +7,8 @@ import numpy as np
 file_path= "resources/03.jpg"
 im = Image.open(file_path)
 im.save("ocr.jpg", dpi=(300, 300))
-
+ 
+ 
 #make image b&w
 im = Image.open("ocr.jpg").convert("L")
 im.save("ocr.jpg")
