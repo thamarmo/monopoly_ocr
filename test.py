@@ -7,9 +7,6 @@ import pandas as pd
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
-names_actual = []
-result_name = []
-result_wealth = []
 
 file_path= "resources/14.jpg"
 im = Image.open(file_path)
@@ -18,36 +15,24 @@ im.save("ocr.jpg", dpi=(300, 300))
 #make image b&w
 im = Image.open("ocr.jpg").convert("L")
 im.save("ocr.jpg")
-
 image = cv2.imread("ocr.jpg")
-
-#invert colour chanels
 invert = cv2.bitwise_not(image)
-
-#Crop image to name boxes
 #Crop dimensions for names
 crop1 = invert[428:478,683:970]
 crop2 = invert[645:700,683:970]
 crop3 = invert[869:918,683:970]
 crop4 = invert[1086:1136,683:970]
 
-
-#Global Crop width for wealth except first value
-#ww1 = 2067
-#ww2 = 2198
 ww1 = 2085
 ww2 = 2225
-#Global variables for threshold
 tn = 25
 tw = 28
 
 #Crop image to number boxes
-#Crop dimensions for Total Wealth
 crop1a = invert[360:430,2065:ww2]
 crop2a = invert[570:655,ww1:ww2]
 crop3a = invert[790:870,ww1:ww2]
 crop4a = invert[1010:1100,ww1:ww2]
-
 
 #Threshhold for names
 retval, threshold1 = cv2.threshold(crop1,tn,255,cv2.THRESH_BINARY)
@@ -56,10 +41,9 @@ retval, threshold3 = cv2.threshold(crop3,tn,255,cv2.THRESH_BINARY)
 retval, threshold4 = cv2.threshold(crop4,tn,255,cv2.THRESH_BINARY)
 
 #Threshhold for Total wealth
-retval, threshold1a = cv2.threshold(crop1a,tw,255,cv2.THRESH_BINARY)
-retval, threshold2a = cv2.threshold(crop2a,tw,255,cv2.THRESH_BINARY)
-retval, threshold3a = cv2.threshold(crop3a,tw,255,cv2.THRESH_BINARY)
-retval, threshold4a = cv2.threshold(crop4a,tw,255,cv2.THRESH_BINARY)
+for i in range (3):
+    retval, threshold[i] = cv2.threshold(crop1a,tw,255,cv2.THRESH_BINARY)
+
 
 cv2.imwrite("w1.jpg",threshold1a)
 cv2.imwrite("w2.jpg",threshold2a)
@@ -89,21 +73,10 @@ df = pd.read_csv('data.csv')
 print(name1,name2,name3,name4)
 print(wealth1,wealth2,wealth3,wealth4)
 
-#Append the latest scan to data.csv
-names_avatar=['thamarmo','Sanjay','Spartan','Abhishek','Shishtaouk','NipPincher']
-
-#pd.DataFrame(columns=['thamarmo','Sanjay','Spartan','Abhishek','Shishtaouk','NipPincher'])
-    
-data = pd.read_csv('data.csv')
-    for i in range (6):
-        if name1 == names_avatar[i]
-        data.Append
-
 
              
 
-
-#Read CSV and plot the chart
+"""#Read CSV and plot the chart
 fig = make_subplots(
     rows=6, cols=3,
     specs=[[{}, {"rowspan": 2,"colspan": 2},None],
@@ -196,4 +169,4 @@ fig.add_trace(
 
 fig.update_layout(height=800, width=1024, title_text="Monopoly Tracking Dashboard")
 fig.show()
-
+"""
