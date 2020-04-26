@@ -84,30 +84,26 @@ wealth4 = -abs(int(wealth4))
 
 df = pd.read_csv('data.csv')
 
-result_name.append(name1,name2,name3,name4)
-result_wealth.append(wealth1,wealth2,wealth3,wealth4)
+
 
 print(name1,name2,name3,name4)
 print(wealth1,wealth2,wealth3,wealth4)
 
+#Append the latest scan to data.csv
+names_avatar=['thamarmo','Sanjay','Spartan','Abhishek','Shishtaouk','NipPincher']
 
-pd.DataFrame(columns=['thamarmo','Sanjay','Spartan','Abhishek','Shishtaouk','NipPincher'])
-         data = pd.read_csv('data.csv')
-         for rows in data:
+#pd.DataFrame(columns=['thamarmo','Sanjay','Spartan','Abhishek','Shishtaouk','NipPincher'])
+    
+data = pd.read_csv('data.csv')
+    for i in range (6):
+        if name1 == names_avatar[i]
+        data.Append
+
+
              
 
 
-#Append the latest scan to data.csv
-
-
-
-
-
-
 #Read CSV and plot the chart
-
-
-
 fig = make_subplots(
     rows=6, cols=3,
     specs=[[{}, {"rowspan": 2,"colspan": 2},None],
@@ -198,6 +194,6 @@ fig.add_trace(
 )
 
 
-fig.update_layout(height=800, width=1600, title_text="Monopoly Tracking Dashboard")
+fig.update_layout(height=800, width=1024, title_text="Monopoly Tracking Dashboard")
 fig.show()
 
