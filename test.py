@@ -83,6 +83,7 @@ wealth3 = -abs(int(wealth3))
 wealth4 = -abs(int(wealth4))
 
 df = pd.read_csv('data.csv')
+df_rank = pd.read_csv("rank.csv")
 
 
 
@@ -94,102 +95,134 @@ names_avatar=['thamarmo','Sanjay','Spartan','Abhishek','Shishtaouk','NipPincher'
 
 #pd.DataFrame(columns=['thamarmo','Sanjay','Spartan','Abhishek','Shishtaouk','NipPincher'])
     
+"""
 data = pd.read_csv('data.csv')
-    for i in range (6):
-        if name1 == names_avatar[i]
+for i in range (6):
+    if name1 == names_avatar[i]
         data.Append
-
+"""
 
              
 
 
 #Read CSV and plot the chart
 fig = make_subplots(
-    rows=6, cols=3,
+    rows=8, cols=3,
     specs=[[{}, {"rowspan": 2,"colspan": 2},None],
         [{}, None,None],
         [{}, None,None],
         [{}, None,None],
         [{}, None,None],
+        [{}, None,None],
+        [{}, None,None],
         [{}, None,None]],
-    subplot_titles=("Sanjay","Rank tracking", "Thamar", "Abhishek", "Shishir","Nivin","Hrideek"))
+    subplot_titles=("Sanjay","Rank tracking", "Thamar", "Abhishek", "Shishir","Nivin","Diraj","Nithin","Hrideek"))
 fig.add_trace(
     go.Scatter(
     x=df['Game No'], 
-    y=df['Sanjay_w'], name="Sanjay",line_shape='spline',connectgaps=True,showlegend=False),
+    y=df['Sanjay'], name="Sanjay",line_shape='spline',connectgaps=True,showlegend=False),
     row=1, col=1
 )
 
 fig.add_trace(
     go.Scatter(
     x=df['Game No'], 
-    y=df['Thamar_w'], name="Thamar",line_shape='spline',connectgaps=True,showlegend=False),
+    y=df['Thamar'], name="Thamar",line_shape='spline',connectgaps=True,showlegend=False),
     row=2, col=1
 )
 
 fig.add_trace(
     go.Scatter(
     x=df['Game No'], 
-    y=df['Abhishek_w'], name="Abhishek",line_shape='spline',connectgaps=True,showlegend=False),
+    y=df['Abhishek'], name="Abhishek",line_shape='spline',connectgaps=True,showlegend=False),
     row=3, col=1
 )
 
 fig.add_trace(
     go.Scatter(
     x=df['Game No'], 
-    y=df['Shishir_w'], name="Shishir",line_shape='spline',connectgaps=True,showlegend=False),
+    y=df['Shishir'], name="Shishir",line_shape='spline',connectgaps=True,showlegend=False),
     row=4, col=1
 )
 
 fig.add_trace(
     go.Scatter(
     x=df['Game No'], 
-    y=df['Nivin_w'], name="Nivin",line_shape='spline',connectgaps=True,showlegend=False),
+    y=df['Nivin'], name="Nivin",line_shape='spline',connectgaps=True,showlegend=False),
     row=5, col=1
 )
 
 fig.add_trace(
     go.Scatter(
     x=df['Game No'], 
-    y=df['Hrideek_w'], name="Hrideek",line_shape='spline',connectgaps=True,showlegend=False),
+    y=df['Diraj'], name="Diraj",line_shape='spline',connectgaps=True,showlegend=False),
     row=6, col=1
+)
+
+fig.add_trace(
+    go.Scatter(
+    x=df['Game No'], 
+    y=df['Nithin'], name="Nithin",line_shape='spline',connectgaps=True,showlegend=False),
+    row=7, col=1
+)
+
+fig.add_trace(
+    go.Scatter(
+    x=df['Game No'], 
+    y=df['Hrideek'], name="Hrideek",line_shape='spline',connectgaps=True,showlegend=False),
+    row=8, col=1
 )
 
 #Rank tracking
 fig.add_trace(
     go.Scatter(
-    x=df['Game No'], 
-    y=df['Sanjay_r'], name='Sanjay',line_shape='spline',connectgaps=True),
+    x=df_rank['Game No'], 
+    y=df_rank['Sanjay'], name='Sanjay',line_shape='spline',connectgaps=True),
     row=1,col=2
 )
 fig.add_trace(
     go.Scatter(
-    x=df['Game No'], 
-    y=df['Thamar_r'], name = 'Thamar',line_shape='spline',connectgaps=True),
+    x=df_rank['Game No'], 
+    y=df_rank['Thamar'], name = 'Thamar',line_shape='spline',connectgaps=True),
     row=1,col=2
 )
 fig.add_trace(
     go.Scatter(
-    x=df['Game No'], 
-    y=df['Abhishek_r'], name='Abhishek',line_shape='spline',connectgaps=True),
+    x=df_rank['Game No'], 
+    y=df_rank['Abhishek'], name='Abhishek',line_shape='spline',connectgaps=True),
     row=1,col=2
 )
 fig.add_trace(
     go.Scatter(
-    x=df['Game No'], 
-    y=df['Shishir_r'], name='Shishir',line_shape='spline',connectgaps=True),
+    x=df_rank['Game No'], 
+    y=df_rank['Shishir'], name='Shishir',line_shape='spline',connectgaps=True),
     row=1,col=2
 )
 fig.add_trace(
     go.Scatter(
-    x=df['Game No'], 
-    y=df['Nivin_r'], name = 'Nivin',line_shape='spline',connectgaps=True),
+    x=df_rank['Game No'], 
+    y=df_rank['Nivin'], name = 'Nivin',line_shape='spline',connectgaps=True),
     row=1,col=2
 )
+
 fig.add_trace(
     go.Scatter(
-    x=df['Game No'], 
-    y=df['Hrideek_r'], name='Hrideek',line_shape='spline',connectgaps=True),
+    x=df_rank['Game No'], 
+    y=df_rank['Diraj'], name = 'Diraj',line_shape='spline',connectgaps=True),
+    row=1,col=2
+)
+
+fig.add_trace(
+    go.Scatter(
+    x=df_rank['Game No'], 
+    y=df_rank['Diraj'], name = 'Nithin',line_shape='spline',connectgaps=True),
+    row=1,col=2
+)
+
+fig.add_trace(
+    go.Scatter(
+    x=df_rank['Game No'], 
+    y=df_rank['Hrideek'], name='Hrideek',line_shape='spline',connectgaps=True),
     row=1,col=2
 )
 
