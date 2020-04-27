@@ -82,6 +82,36 @@ wealth2 = -abs(int(wealth2))
 wealth3 = -abs(int(wealth3))
 wealth4 = -abs(int(wealth4))
 
+#add read data to csv
+data = pd.read_csv("data.csv")
+names = ["Game No",name1,name2,name3,name4]
+wealths = [(len(data["Game No"])+1),wealth1,wealth2,wealth3,wealth4]
+
+ocr = pd.DataFrame([wealths],columns=names)
+
+merging = pd.concat([data, ocr], join = "outer")
+print(merging)
+
+merging.to_csv(r"data.csv", index=False)
+
+#add ranks to csv
+data_r = pd.read_csv("rank.csv")
+
+rank1 = 1
+rank2 = 2
+rank3 = 3
+rank4 = 4
+
+wealths = [(len(data_r["Game No"])+1),rank1,rank2,rank3,rank4]
+
+ocr = pd.DataFrame([wealths],columns=names)
+
+merging = pd.concat([data_r, ocr], join = "outer")
+print(merging)
+
+merging.to_csv(r"rank.csv", index=False)
+
+#dashboard stuff
 df = pd.read_csv('data.csv')
 df_rank = pd.read_csv("rank.csv")
 
