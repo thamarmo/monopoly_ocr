@@ -2,16 +2,29 @@ import pytesseract
 from PIL import Image
 import cv2
 import numpy as np
-
+import sys
 import pandas as pd
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
+import os
 
-names_actual = []
-result_name = []
-result_wealth = []
+check = pd.read_csv("latest.csv")
+latest_file = check.iloc[0,0]
 
-file_path= "resources/14.jpg"
+def newest(path):
+    files = os.listdir(path)
+    paths = [os.path.join(path, basename) for basename in files]
+    return max(paths, key=os.path.getctime)
+print(newest("resources"))
+latest = pd.DataFrame([newest("resources")])
+latest.to_csv(r"latest.csv",index = False)
+if latest_file == newest("resources"):
+    sys.exit('Item has been appended')
+
+else:
+    print("This will be appended")
+
+file_path= newest("resources")
 im = Image.open(file_path)
 im.save("ocr.jpg", dpi=(300, 300))
 
@@ -120,19 +133,7 @@ df_rank = pd.read_csv("rank.csv")
 print(name1,name2,name3,name4)
 print(wealth1,wealth2,wealth3,wealth4)
 
-#Append the latest scan to data.csv
-names_avatar=['thamarmo','Sanjay','Spartan','Abhishek','Shishtaouk','NipPincher']
-
-#pd.DataFrame(columns=['thamarmo','Sanjay','Spartan','Abhishek','Shishtaouk','NipPincher'])
-    
-"""
-data = pd.read_csv('data.csv')
-for i in range (6):
-    if name1 == names_avatar[i]
-        data.Append
-"""
-
-             
+            
 
 
 #Read CSV and plot the chart
